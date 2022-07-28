@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.model;
 
 import java.util.UUID;
 
@@ -6,20 +6,18 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Person {
 
   private final UUID id;
+  
   @NotBlank
   private final String name;
 
-  @NotNull
-  @Min(0)
-  private final Integer age;
-
-  public Person(UUID id, String name, Integer age) {
+  public Person(UUID id, @JsonProperty("name") String name) {
     this.id = id;
-    this.name = name;
-    this.age = age;
+    this.name = name;    
   }
 
   public UUID getId() {
@@ -30,7 +28,5 @@ public class Person {
     return name;
   }
 
-  public Integer getAge() {
-    return age;
-  }
+
 }
